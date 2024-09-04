@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM to Pixels Converter</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+
+        .input-field,
+        .convert-btn {
+            padding: 12px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .convert-btn {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            width: 25%;
+        }
+
+        .convert-btn:hover {
+            background-color: #218838;
+        }
+
+        #result-label {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: red;
+        }
+
+        .result-display {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CM to Pixels Converter</h1>
+    <div class="input-group">
+        <div>
+            <label for="ppi">PPI: </label>
+            <input type="number" class="input-field" id="ppi" value="96" placeholder="Enter ppi (default: 96)">
+        </div>
+
+        <div>
+            <label for="cm">Enter centimeters: </label>
+            <input type="number" class="input-field" id="cm" placeholder="Enter centimeters">
+        </div>
+    </div>
+    <button class="convert-btn" onclick="convertToPixels()">Convert</button>
+
+    <div>
+        <p id="result-label">Result:</p>
+        <p class="result-display" id="result"></p>
+    </div>
+    <!-- <input type="number" class="input-field" id="px" placeholder="pixels"> -->
+
+    <script>
+        function convertToPixels() {
+            var cmValue = document.getElementById("cm").value;
+            var ppiValue = document.getElementById("ppi").value || 96; // screen resolution || default: 96
+            var inchesValue = cmValue / 2.54; // convert cm to inches
+            var pixelsValue = inchesValue * ppiValue;
+            document.getElementById("result").innerText = `${cmValue} cm is ${pixelsValue.toFixed(2)} pixels`;
+            // document.getElementById("px").value = pixelsValue.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
